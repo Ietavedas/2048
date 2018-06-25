@@ -11,8 +11,8 @@ class View{
         // console.log()
         const coordanates = [];
         for(let i = 0; i < this.grid.length; i++){
-            let y = getComputedStyle(this.grid[i], null).getPropertyValue('top');
-            let x = getComputedStyle(this.grid[i], null).getPropertyValue('left');
+            let y = parseInt(getComputedStyle(this.grid[i], null).getPropertyValue('top'));
+            let x = parseInt(getComputedStyle(this.grid[i], null).getPropertyValue('left'));
             // console.log({x, y});
             coordanates.push({x, y});
             

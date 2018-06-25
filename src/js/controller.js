@@ -9,9 +9,9 @@ class Controller{
 
     loadReady(){
         const coord = this.view.getCoordinateGrid();
-        // console.log(coord);
-        // this.view.getCoordinateGrid()
-        this.model.setStateGrid(coord)
+        const stateGrid = this.model.setStateGrid(coord)
+        const randomThing = this.model.getRandomThing(stateGrid);
+        this.model.setThing(randomThing);
     }
 }
 
