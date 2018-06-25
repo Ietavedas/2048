@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script> -->
+    <style>
+        /* *{
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            -khtml-user-drag: none;
+            -ms-user-drag: none;
+            user-drag: none;
+        } */
+        #playfield{
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            width: 400px;
+            height: 400px;
+            background: white;
+        }
+        .back{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: gray;
+        }
+        .thing{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            color: black;
+            text-align: center;
+            font: 48px/96px Arial;
+        }
+        .thing.t2{
+            background: #18df00;
+        }
+        .thing.t2:after{
+            content: '2'
+        }
+        .thing.t4{
+            background: #5a9900;
+        }
+        .thing.t4:after{
+            content: '4'
+        }
+        .thing.t8{
+            background: #8c8e00;
+        }
+        .thing.t8:after{
+            content: '8'
+        }
+        .thing.t16{
+            background: #d38200;
+        }
+        .thing.t16:after{
+            content: '16'
+        }
+        .thing.t32{
+            background: #ae3900;
+        }
+        .thing.t32:after{
+            content: '32'
+        }
+        .thing.t64{
+            background: #931269;
+        }
+        .thing.t64:after{
+            content: '64'
+        }
+        .thing.t128{
+            background: #0a034c;
+        }
+        .thing.t128:after{
+            content: '128'
+        }
+        /* и так далее */
+
+    </style>
+    <script>
+
+        /*
+         Пример игры: http://gabrielecirulli.github.io/2048/ только в нем ходы делаются с помощью клавиатуры
+         Правила игры.
+         В каждом раунде появляется плитка номинала «2» (с вероятностью 90 %) или «4» (с вероятностью 10 %).
+         В начале игры на поле находится 1 клетка.
+         Чтобы сделать ход, игрок должен зажать левую кнопку мыши и переместить курсор в одном из четырех направлений.
+         Все клетку с числами при этом сдивгаются в этом направлении до упора.
+         Если при этом две плитки одного номинала «налетают» одна на другую, то они слипаются в одну,
+         номинал которой равен сумме соединившихся плиток.
+         После каждого хода на свободной секции поля появляется новая плитка номиналом «2» или «4».
+         Если при нажатии кнопки местоположение плиток или их номинал не изменится, то ход не совершается.
+         Тоесть новую плитку в этом случае добавлять не нужно.
+         За каждое соединение игровые очки увеличиваются на номинал получившейся плитки.
+         Игра заканчивается поражением, если после очередного хода невозможно совершить действие.
+         */
+        // $(document).ready(function () {
+        //     var $playfield = $('#playfield');
+        //     var mousedown = false;
+        //     $playfield.unbind('mousedown').mousedown(function () {
+        //         mousedown = true;
+        //     });
+        //     $playfield.unbind('mouseup').mouseup(function () {
+        //         mousedown = false;
+        //     });
+        // });
+    </script>
+</head>
+<body>
+<div id="playfield">
+    <div class="back" style="top: 0px; left: 0px;"></div>
+    <div class="back" style="top: 100px; left: 0px;"></div>
+    <div class="back" style="top: 200px; left: 0px;"></div>
+    <div class="back" style="top: 300px; left: 0px;"></div>
+    <div class="back" style="top: 0px; left: 100px;"></div>
+    <div class="back" style="top: 100px; left: 100px;"></div>
+    <div class="back" style="top: 200px; left: 100px;"></div>
+    <div class="back" style="top: 300px; left: 100px;"></div>
+    <div class="back" style="top: 0px; left: 200px;"></div>
+    <div class="back" style="top: 100px; left: 200px;"></div>
+    <div class="back" style="top: 200px; left: 200px;"></div>
+    <div class="back" style="top: 300px; left: 200px;"></div>
+    <div class="back" style="top: 0px; left: 300px;"></div>
+    <div class="back" style="top: 100px; left: 300px;"></div>
+    <div class="back" style="top: 200px; left: 300px;"></div>
+    <div class="back" style="top: 300px; left: 300px;"></div>
+
+    <!-- <div class="thing t2" style="top: 0px; left: 0px;"></div> -->
+</div>
+
+<script type="text/javascript" src="dist/bundle.js"></script>
+</body>
+</html>
