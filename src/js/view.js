@@ -4,6 +4,7 @@ class View{
         this.container = document.getElementById('playfield');
 
         // this.getCoordinateGrid()
+        this.container.addEventListener('mousedown', this.handleClick.bind(this));
     }
 
     getCoordinateGrid(){
@@ -19,6 +20,25 @@ class View{
         }
         // console.log(coordanates)
         return coordanates
+    }
+
+    renderThing(obj){
+        
+        this.container.insertAdjacentHTML('beforeend', `<div class="thing t${obj.value}" style="top: ${obj.yCoord}px; left: ${obj.xCoord}px;"></div>`)
+    }
+
+    handleClick(e){
+        // console.log(`нажал: ${event.clientX}`)
+        console.log(`отпустил: ${e.clientX}`)
+        this.container.addEventListener('mousemove', function(e){
+            console.log(`отпустил: ${e.clientX}`)
+            return false;
+            
+        })
+        this.container.addEventListener('mouseup', function(e){
+            // console.log(`отпустил: ${e.clientX}`)
+            return false;
+        })
     }
 }
 

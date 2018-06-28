@@ -1,21 +1,13 @@
-class Model{
+import Probability from './probability.js';
+import getRandom from './helper.js';
+
+class Model extends Probability{
     constructor(stateGrid = [], stateThing = []){
+        super();
         this.stateGrid = stateGrid;
         this.stateThing = stateThing;
-    }
-
-    //set grid's model
-    setStateGrid(coords){
-        coords.map((item) => {
-            this.stateGrid.push(this.objectDefault(item.x, item.y, null))
-        })
+        console.log(this.stateGrid);
         console.log(this.stateThing);
-        return this.stateGrid;
-    }
-
-    setThing(randomObject){
-        this.randomObject = randomObject;
-        this.stateThing.push(this.randomObject);
     }
 
     //base object for grid's model
@@ -29,6 +21,20 @@ class Model{
         )
     }
 
+    //set grid's model
+    setStateGrid(coords){
+        coords.map((item) => {
+            this.stateGrid.push(this.objectDefault(item.x, item.y, null))
+        })
+        // console.log(this.stateThing);
+        return this.stateGrid;
+    }
+
+    setThing(randomObject){
+        this.randomObject = randomObject;
+        this.stateThing.push(this.randomObject);
+    }
+
     //return random object for thing's model
     getRandomThing(grid){
         this.grid = grid;
@@ -39,15 +45,17 @@ class Model{
                 availableObjects.push(this.grid[i]);
             }
         }
-        let randomObject = availableObjects[this.getRandom(0, availableObjects.length - 1)];
-        console.log(randomObject.value)
+
+        let randomObject = availableObjects[getRandom(0, availableObjects.length - 1)];
+        randomObject.value = this.getRamdomValue();
+        // console.log(randomObject)
         return randomObject
     }
 
     //вынести в хелпер
-    getRandom(min, max){
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    
+
+
 }
 
 export default Model;
