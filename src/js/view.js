@@ -5,6 +5,7 @@ class View{
 
         // this.getCoordinateGrid()
         this.container.addEventListener('mousedown', this.handleClick.bind(this));
+
     }
 
     getCoordinateGrid(){
@@ -27,18 +28,16 @@ class View{
         this.container.insertAdjacentHTML('beforeend', `<div class="thing t${obj.value}" style="top: ${obj.yCoord}px; left: ${obj.xCoord}px;"></div>`)
     }
 
-    handleClick(e){
-        // console.log(`нажал: ${event.clientX}`)
-        console.log(`отпустил: ${e.clientX}`)
-        this.container.addEventListener('mousemove', function(e){
-            console.log(`отпустил: ${e.clientX}`)
-            return false;
-            
-        })
-        this.container.addEventListener('mouseup', function(e){
-            // console.log(`отпустил: ${e.clientX}`)
-            return false;
-        })
+    handleClick(event){
+        event.stopPropagation();
+        console.log(`x: ${event.clientX}`)
+        console.log(`y: ${event.clientX}`)
+        
+        this.container.addEventListener('mouseup', function(event){
+            event.stopPropagation();
+            console.log(`x: ${event.clientX}`)
+            console.log(`y: ${event.clientX}`)
+        }, true)
     }
 }
 
