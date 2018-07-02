@@ -1,10 +1,15 @@
-class Controller{
+import {EventEmitter} from './helper.js';
+
+class Controller extends EventEmitter{
     constructor(view, model){
+        super();
         this.view = view;
         this.model = model;
-        // console.log(event.type);
+        // console.log(this.on());
 
        this.loadReady();
+
+    //    this.view.on('', )
     }
 
     loadReady(){

@@ -1,4 +1,4 @@
-import getRandom from './helper.js';
+import {getRandom} from './helper.js';
 
 class Probability{
     constructor(){

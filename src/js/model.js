@@ -1,5 +1,5 @@
 import Probability from './probability.js';
-import getRandom from './helper.js';
+import {getRandom} from './helper.js';
 
 class Model extends Probability{
     constructor(stateGrid = [], stateThing = []){
