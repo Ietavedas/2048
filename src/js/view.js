@@ -1,16 +1,23 @@
-class View{
+
+import {EventEmitter} from './helper.js';
+
+class View extends EventEmitter{
     constructor(){
+        super();
         this.grid = document.querySelectorAll('.back');
         this.container = document.getElementById('playfield');
 
-        // this.getCoordinateGrid()
-        this.container.addEventListener('mousedown', this.handleClick.bind(this));
+        this.posDown = null;
+        this.posUp = null;
 
+        // this.getCoordinateGrid()
+        this.container.addEventListener('mousedown', this.handleDown.bind(this));
+        this.container.addEventListener('mouseup', this.handleUp.bind(this));
+        
     }
 
     getCoordinateGrid(){
         // this.grid = grid;
-        // console.log()
         const coordanates = [];
         for(let i = 0; i < this.grid.length; i++){
             let y = parseInt(getComputedStyle(this.grid[i], null).getPropertyValue('top'));
@@ -19,7 +26,6 @@ class View{
             coordanates.push({x, y});
             
         }
-        // console.log(coordanates)
         return coordanates
     }
 
@@ -27,34 +33,36 @@ class View{
         this.container.insertAdjacentHTML('beforeend', `<div class="thing t${obj.value}" style="top: ${obj.yCoord}px; left: ${obj.xCoord}px;"></div>`)
     }
 
-    handleClick(eventX){
-        // event.stopPropagation();
-        // event.stopImmediatePropagation();
-        // console.log(`x: ${eventX.clientX}`)
-        // console.log(`y: ${event.clientY}`)
-        let downClickX = eventX.clientX;
-        let downClickY = eventX.clientY;
-        
-        this.container.addEventListener('mouseup', this.mouseupListerner.bind(downClickX, downClickY, this), false);
-        this.container.removeEventListener('mouseup', this.mouseupListerner.bind(this), false);
-        console.dir(this.container)
+    handleDown(event){
+        this.posDown = [event.clientX, event.clientY];
     }
 
-    mouseupListerner(x, y, event){
-        let upClickX = event.clientX;
-        let upClickY = event.clientY;
-        console.log(event)
-        // let xResult = upClickX - x;
-        // let yResult = upClickY - y;
+    handleUp(event){
+        this.posUp = [event.clientX, event.clientY];
+        this.getResultEmit(this.posDown, this.posUp);
+    }
 
-        // console.log(x)
-        // console.log(upClickX)
-        // console.log(xResult)
+    getResultEmit(down, up){
+        let xResult = up[0] - down[0];
+        let yResult = up[1] - down[1];
 
-        // if( xResult < 0){
-        //     xResult = xResult * -1;
-        //     // console.log(xResult)
-        // }
+        let xVector = Math.abs(xResult);
+        let yVector = Math.abs(yResult);
+        
+        if(xVector >= yVector){
+            if(xResult >= 0){
+                this.emit('right', true);
+            }else{
+                this.emit('left', true);
+            }
+        }else{
+            if(yResult >= 0) {
+                this.emit('down', true);
+            }else{
+                this.emit('up', true);
+            }
+        }
+        // console.log(yResult)
     }
 
 

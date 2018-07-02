@@ -9,7 +9,10 @@ class Controller extends EventEmitter{
 
        this.loadReady();
 
-    //    this.view.on('', )
+       this.view.on('up', function(){console.log('up')})
+       this.view.on('down', function(){console.log('down')})
+       this.view.on('left', function(){console.log('left')})
+       this.view.on('right', function(){console.log('right')})
     }
 
     loadReady(){
