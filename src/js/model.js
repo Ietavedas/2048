@@ -26,7 +26,6 @@ class Model extends Probability{
         coords.map((item) => {
             this.stateGrid.push(this.objectDefault(item.x, item.y, null))
         })
-        // console.log(this.stateThing);
         return this.stateGrid;
     }
 
@@ -48,14 +47,8 @@ class Model extends Probability{
 
         let randomObject = availableObjects[getRandom(0, availableObjects.length - 1)];
         randomObject.value = this.getRamdomValue();
-        // console.log(randomObject)
         return randomObject
     }
-
-    //вынести в хелпер
-    
-
-
 }
 
 export default Model;

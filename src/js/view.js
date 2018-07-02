@@ -48,7 +48,7 @@ class View extends EventEmitter{
 
         let xVector = Math.abs(xResult);
         let yVector = Math.abs(yResult);
-        
+
         if(xVector >= yVector){
             if(xResult >= 0){
                 this.emit('right', true);
@@ -62,7 +62,6 @@ class View extends EventEmitter{
                 this.emit('up', true);
             }
         }
-        // console.log(yResult)
     }
 
 
