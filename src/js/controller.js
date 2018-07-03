@@ -29,6 +29,11 @@ class Controller extends EventEmitter{
         // this.type = type;
         // console.log(this.type)
         this.model.test(type);
+
+        const randomThing = this.model.getRandomThing(this.model.stateGrid);
+
+        this.model.setThing(randomThing);
+        this.view.renderThing(randomThing);
     }
     
 }

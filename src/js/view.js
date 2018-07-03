@@ -30,7 +30,9 @@ class View extends EventEmitter{
     }
 
     renderThing(obj){
-        this.container.insertAdjacentHTML('beforeend', `<div class="thing t${obj.value}" style="top: ${obj.yCoord}px; left: ${obj.xCoord}px;"></div>`)
+        setTimeout( () => {
+            this.container.insertAdjacentHTML('beforeend', `<div class="thing t${obj.value}" style="top: ${obj.yCoord}px; left: ${obj.xCoord}px;"></div>`)
+        }, 300)
     }
 
     handleDown(event){

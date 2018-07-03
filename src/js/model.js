@@ -1,5 +1,5 @@
 import Probability from './probability.js';
-import {getRandom} from './helper.js';
+import {getRandom, getCompareX} from './helper.js';
 
 class Model extends Probability{
     constructor(stateGrid = [], stateThing = []){
@@ -53,10 +53,50 @@ class Model extends Probability{
     test(type){
         if(type == 'up'){
             // console.log(this.stateGrid[i].yCoord)
+            // console.log(this.stateGrid.sort(getCompareX(a, b)))
+            // console.log()
+            // this.stateGrid.sort(function(a, b){
+            //     return a.yCoord - b.yCoord;
+            // })
+            // this.stateGrid.reverse();
+            for(let i = 0; i < 4; i++){
+                // console.log(this.stateGrid[i])
+                this.stateGrid.forEach( (element, index) => {
+                    // let vector = [];
+                    if(element.xCoord == i || element.xCoord == i + '00'){
+                        let xVal = index;
+                        console.log(xVal)
+                        for(let j = 0; j < 4; j++){
+                            // if(element.yCoord == j+1 || element.yCoord == j+1 + '00' ){
+                            //     console.log(xVal)
+                            //     let yVal = element.value;
+                            //     // console.log(xVal)
+                            // }
+                            
+                            // console.log(element[j].value + element[j+1].value)
+
+                            
+                        }
+                        
+                        // if(element.yCoord == j || element.yCoord == j + '00' ){
+                                
+                        // }
+                        // vector.push(element)
+                        // vector.forEach( (el) => {
+                        //     console.log(el.value)
+                        //     if(el.value != null || undefined){
+                        //         if()
+                        //     }
+                        // })
+                    }
+                    // console.log(vector)
+                } )
+                console.log("___")
+            }
         }
-        for(let i = 0; i < this.stateGrid.length; i++){
-            console.log(this.stateGrid[i].yCoord)
-        }
+        // for(let i = 0; i < this.stateGrid.length; i++){
+        //     console.log(this.stateGrid[i].yCoord)
+        // }
     }
 }
 

@@ -2,6 +2,10 @@ function getRandom(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getCompareX(a, b){
+    return a.xCoord - b.xCoord;
+}
+
 class EventEmitter {
 	constructor(){
 		this.events = {};
@@ -19,4 +23,4 @@ class EventEmitter {
 	
 }
 
-export { getRandom, EventEmitter };
+export { getRandom, EventEmitter, getCompareX };
