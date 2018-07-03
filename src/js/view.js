@@ -39,10 +39,10 @@ class View extends EventEmitter{
 
     handleUp(event){
         this.posUp = [event.clientX, event.clientY];
-        this.getResultEmit(this.posDown, this.posUp);
+        this.getVector(this.posDown, this.posUp);
     }
 
-    getResultEmit(down, up){
+    getVector(down, up){
         let xResult = up[0] - down[0];
         let yResult = up[1] - down[1];
 

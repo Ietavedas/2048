@@ -49,6 +49,15 @@ class Model extends Probability{
         randomObject.value = this.getRamdomValue();
         return randomObject
     }
+
+    test(type){
+        if(type == 'up'){
+            // console.log(this.stateGrid[i].yCoord)
+        }
+        for(let i = 0; i < this.stateGrid.length; i++){
+            console.log(this.stateGrid[i].yCoord)
+        }
+    }
 }
 
 export default Model;
