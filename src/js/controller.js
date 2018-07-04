@@ -9,10 +9,10 @@ class Controller extends EventEmitter{
 
        this.loadReady();
 
-       this.view.on('up', this.handleCalculate.bind(this, 'up'))
-       this.view.on('down', this.handleCalculate.bind(this, 'down'))
-       this.view.on('left', this.handleCalculate.bind(this, 'left'))
-       this.view.on('right', this.handleCalculate.bind(this, 'right'))
+    //    this.view.on('up', this.handleCalculate.bind(this, 'up'))
+    //    this.view.on('down', this.handleCalculate.bind(this, 'down'))
+    //    this.view.on('left', this.handleCalculate.bind(this, 'left'))
+    //    this.view.on('right', this.handleCalculate.bind(this, 'right'))
     }
 
     loadReady(){
@@ -22,7 +22,7 @@ class Controller extends EventEmitter{
 
         this.model.setThing(randomThing);
 
-        this.view.renderThing(randomThing);
+        // this.view.renderThing(randomThing);
     }
 
     handleCalculate(type){

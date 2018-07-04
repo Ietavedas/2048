@@ -2,30 +2,34 @@ import Probability from './probability.js';
 import {getRandom, getCompareX} from './helper.js';
 
 class Model extends Probability{
-    constructor(stateGrid = [], stateThing = []){
+    constructor(stateGrid = {}, stateThing = []){
         super();
         this.stateGrid = stateGrid;
         this.stateThing = stateThing;
         console.log(this.stateGrid);
         console.log(this.stateThing);
+        
     }
 
     //base object for grid's model
     objectDefault(x, y, value){
-        return (
-            {
-                xCoord: x,
-                yCoord: y,
-                value: value
-            }
-        )
+        return {
+            position: {
+                x: x,
+                y: y
+            },
+            value: value
+        }
     }
 
     //set grid's model
     setStateGrid(coords){
         coords.map((item) => {
             this.stateGrid.push(this.objectDefault(item.x, item.y, null))
+            // if(item)
         })
+        // console.log(this.stateGrid)
+        
         return this.stateGrid;
     }
 
@@ -44,7 +48,7 @@ class Model extends Probability{
                 availableObjects.push(this.grid[i]);
             }
         }
-
+        console.log(this.grid[0].position.x)
         let randomObject = availableObjects[getRandom(0, availableObjects.length - 1)];
         randomObject.value = this.getRamdomValue();
         return randomObject
@@ -97,6 +101,17 @@ class Model extends Probability{
         // for(let i = 0; i < this.stateGrid.length; i++){
         //     console.log(this.stateGrid[i].yCoord)
         // }
+    }
+
+    getVector(direction){
+        let map = {
+            0: { x: 0,  y: -1 }, // Up
+            1: { x: 1,  y: 0 },  // Right
+            2: { x: 0,  y: 1 },  // Down
+            3: { x: -1, y: 0 }   // Left
+          };
+        
+          return map[direction];
     }
 }
 
