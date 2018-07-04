@@ -6,6 +6,13 @@ function getCompareX(a, b){
     return a.xCoord - b.xCoord;
 }
 
+function toObject(arr) {
+    var rv = {};
+    for (var i = 0; i < arr.length; ++i)
+      rv[i] = arr[i];
+    return rv;
+  }
+
 class EventEmitter {
 	constructor(){
 		this.events = {};
@@ -23,4 +30,4 @@ class EventEmitter {
 	
 }
 
-export { getRandom, EventEmitter, getCompareX };
+export { getRandom, EventEmitter, getCompareX, toObject };

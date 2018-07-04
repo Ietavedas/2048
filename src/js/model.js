@@ -1,11 +1,11 @@
-import Probability from './probability.js';
+// import Probability from './probability.js';
 import {getRandom, getCompareX} from './helper.js';
 
-class Model extends Probability{
-    constructor(stateGrid = {}, stateThing = []){
-        super();
+class Model{
+    constructor(stateGrid = [], stateThing = []){
         this.stateGrid = stateGrid;
         this.stateThing = stateThing;
+        this.statePrevios = null;
         console.log(this.stateGrid);
         console.log(this.stateThing);
         
@@ -24,6 +24,7 @@ class Model extends Probability{
 
     //set grid's model
     setStateGrid(coords){
+        // console.log(coords)
         coords.map((item) => {
             this.stateGrid.push(this.objectDefault(item.x, item.y, null))
             // if(item)
@@ -38,6 +39,10 @@ class Model extends Probability{
         this.stateThing.push(this.randomObject);
     }
 
+    getRamdomValue(){
+        return Math.random() < 0.9 ? 2 : 4
+    }
+
     //return random object for thing's model
     getRandomThing(grid){
         this.grid = grid;
@@ -48,59 +53,38 @@ class Model extends Probability{
                 availableObjects.push(this.grid[i]);
             }
         }
-        console.log(this.grid[0].position.x)
+        // let zzz = JSON.parse(this.grid);
+        // console.log(zzz[0])
         let randomObject = availableObjects[getRandom(0, availableObjects.length - 1)];
         randomObject.value = this.getRamdomValue();
         return randomObject
     }
 
-    test(type){
-        if(type == 'up'){
-            // console.log(this.stateGrid[i].yCoord)
-            // console.log(this.stateGrid.sort(getCompareX(a, b)))
-            // console.log()
-            // this.stateGrid.sort(function(a, b){
-            //     return a.yCoord - b.yCoord;
-            // })
-            // this.stateGrid.reverse();
-            for(let i = 0; i < 4; i++){
-                // console.log(this.stateGrid[i])
-                this.stateGrid.forEach( (element, index) => {
-                    // let vector = [];
-                    if(element.xCoord == i || element.xCoord == i + '00'){
-                        let xVal = index;
-                        console.log(xVal)
-                        for(let j = 0; j < 4; j++){
-                            // if(element.yCoord == j+1 || element.yCoord == j+1 + '00' ){
-                            //     console.log(xVal)
-                            //     let yVal = element.value;
-                            //     // console.log(xVal)
-                            // }
-                            
-                            // console.log(element[j].value + element[j+1].value)
-
-                            
-                        }
-                        
-                        // if(element.yCoord == j || element.yCoord == j + '00' ){
-                                
-                        // }
-                        // vector.push(element)
-                        // vector.forEach( (el) => {
-                        //     console.log(el.value)
-                        //     if(el.value != null || undefined){
-                        //         if()
-                        //     }
-                        // })
-                    }
-                    // console.log(vector)
-                } )
-                console.log("___")
-            }
-        }
-        // for(let i = 0; i < this.stateGrid.length; i++){
-        //     console.log(this.stateGrid[i].yCoord)
+    test(vector){
+        // if(type == 'up'){
         // }
+        // for(let i = 0; i < this.stateThing.length; i++){
+        //     for(let x = 0; x < 4; x++){
+        //         for(let y = 0; y < 4; y++){
+        //             let cell = {x: this.stateThing[i].position.x, y: this.stateThing[i].position.y}
+        //             console.log(cell)
+        //         }
+                
+        //     }
+        // }
+        this.statePrevios = this.stateThing;
+        this.stateThing = [];
+        this.statePrevios.forEach( (element) => {
+            if( element.position.x + vector.x && element.position.y + vector.y > -1){
+                if(element.position.x + vector.x && element.position.y + vector.y < 4){
+                    let cell = {position: {x: element.position.x + vector.x, y: element.position.y + vector.y}}
+                    console.log(cell)
+                    this.stateThing.push(cell)
+                }
+            }
+        })
+        // console.log("___")
+        console.log(this.stateThing)
     }
 
     getVector(direction){

@@ -1,4 +1,4 @@
-import {EventEmitter} from './helper.js';
+import {EventEmitter, toObject} from './helper.js';
 
 class Controller extends EventEmitter{
     constructor(view, model){
@@ -9,10 +9,11 @@ class Controller extends EventEmitter{
 
        this.loadReady();
 
-    //    this.view.on('up', this.handleCalculate.bind(this, 'up'))
-    //    this.view.on('down', this.handleCalculate.bind(this, 'down'))
-    //    this.view.on('left', this.handleCalculate.bind(this, 'left'))
-    //    this.view.on('right', this.handleCalculate.bind(this, 'right'))
+       this.view.on('up', this.handleCalculate.bind(this, 0))
+       this.view.on('right', this.handleCalculate.bind(this, 1))
+       this.view.on('down', this.handleCalculate.bind(this, 2))
+       this.view.on('left', this.handleCalculate.bind(this, 3))
+       
     }
 
     loadReady(){
@@ -22,13 +23,15 @@ class Controller extends EventEmitter{
 
         this.model.setThing(randomThing);
 
-        // this.view.renderThing(randomThing);
+        this.view.renderThing(randomThing);
     }
 
     handleCalculate(type){
-        // this.type = type;
-        // console.log(this.type)
-        this.model.test(type);
+        this.type = type;
+        
+        const vector = this.model.getVector(this.type)
+        console.log( vector )
+        this.model.test(vector);
 
         const randomThing = this.model.getRandomThing(this.model.stateGrid);
 
