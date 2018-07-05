@@ -24,16 +24,29 @@ class Controller extends EventEmitter{
         this.model.setThing(randomThing);
 
         this.view.renderThing(randomThing);
+
+        this.view.selectors.push(this.view.renderThing(randomThing));
+
+        
+
     }
 
     handleCalculate(type){
         this.type = type;
         
         const vector = this.model.getVector(this.type)
-        console.log( vector )
+        console.log(this.view.thingCell)
         this.model.test(vector);
 
         const randomThing = this.model.getRandomThing(this.model.stateGrid);
+
+        this.view.moveThing(this.model.stateThing);
+
+        let parser = new DOMParser();
+        let doc = parser.parseFromString('<div class"thing"></div>', "text/html");
+        let paragraphs = doc.querySelectorAll('.thing');
+
+        console.log(paragraphs)
 
         this.model.setThing(randomThing);
         this.view.renderThing(randomThing);

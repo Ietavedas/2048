@@ -7,7 +7,7 @@ class Model{
         this.stateThing = stateThing;
         this.statePrevios = null;
         console.log(this.stateGrid);
-        console.log(this.stateThing);
+        // console.log(this.stateThing);
         
     }
 
@@ -18,7 +18,11 @@ class Model{
                 x: x,
                 y: y
             },
-            value: value
+            value: value,
+            previos: {
+                x: x,
+                y: y
+            }
         }
     }
 
@@ -73,18 +77,57 @@ class Model{
         //     }
         // }
         this.statePrevios = this.stateThing;
+        // console.log(this.stateThing)
         this.stateThing = [];
         this.statePrevios.forEach( (element) => {
             if( element.position.x + vector.x && element.position.y + vector.y > -1){
                 if(element.position.x + vector.x && element.position.y + vector.y < 4){
-                    let cell = {position: {x: element.position.x + vector.x, y: element.position.y + vector.y}}
-                    console.log(cell)
+                    let cell = {
+                        position: {
+                            x: element.position.x + vector.x, 
+                            y: element.position.y + vector.y
+                        }, 
+                        value: element.value,
+                        previos: {
+                            x: element.position.x,
+                            y: element.position.y
+                        }
+                    }
+                    // console.log(cell)
+                    this.stateThing.push(cell)
+                }else{
+                    let cell = {
+                        position: {
+                            x: element.position.x, 
+                            y: element.position.y
+                        }, 
+                        value: element.value,
+                        previos: {
+                            x: element.position.x,
+                            y: element.position.y
+                        }
+                    }
+                    // console.log(cell)
                     this.stateThing.push(cell)
                 }
+            }else{
+                let cell = {
+                    position: {
+                        x: element.position.x, 
+                        y: element.position.y
+                    }, 
+                    value: element.value,
+                    previos: {
+                        x: element.position.x,
+                        y: element.position.y
+                    }
+                }
+                    // console.log(cell)
+                this.stateThing.push(cell)
             }
         })
         // console.log("___")
-        console.log(this.stateThing)
+        // console.log(this.stateThing)
     }
 
     getVector(direction){

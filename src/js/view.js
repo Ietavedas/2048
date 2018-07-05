@@ -7,6 +7,8 @@ class View extends EventEmitter{
         this.grid = document.querySelectorAll('.back');
         this.container = document.getElementById('playfield');
 
+        this.selectors = [];
+
         this.posDown = null;
         this.posUp = null;
 
@@ -66,6 +68,16 @@ class View extends EventEmitter{
                 this.emit('up', true);
             }
         }
+    }
+
+    moveThing(thing){
+        this.thing = thing;
+
+        this.thing.forEach((element) => {
+            // console.log(element.previos)
+            
+        });
+        
     }
 
 
