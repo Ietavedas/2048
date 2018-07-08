@@ -70,11 +70,32 @@ class View extends EventEmitter{
         }
     }
 
-    moveThing(thing){
+    moveThing(thing, doc){
         this.thing = thing;
+        this.doc = doc;
 
-        this.thing.forEach((element) => {
-            // console.log(element.previos)
+        // console.log(this.thing)
+
+        
+
+        this.doc.forEach((element) => {
+            let elementLeft = element.style.left;
+
+            for(let i = 0; i < this.thing.length; i++){
+                // this.thing[i].revios;
+                let x = this.thing[i].previos.x == 0 ? 0 + "px" : this.thing[i].previos.x + "00px";
+                // let left = x == elementLeft ? true : false;
+                
+                let xSet = this.thing[i].position.x == 0 ? 0 + "px" : this.thing[i].position.x + "00px";
+
+                if(x == elementLeft){
+                    element.style.left = xSet
+                    console.log(xSet)
+                }
+
+                // console.log(x)
+                // console.log(left)
+            }
             
         });
         
